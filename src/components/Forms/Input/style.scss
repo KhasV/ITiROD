@@ -1,0 +1,41 @@
+.form-input {
+    outline: none;
+    border: none;
+
+    &::placeholder {
+        text-align: center;
+        color: #424242;
+        opacity: 1;
+    }
+
+    &.primary {
+        border-bottom: 1px solid #C4C4C4;
+        background: transparent;
+        text-align: center;
+        margin: 4px 10px;
+    }
+
+    &.filled {
+        background: #90CAF9;
+        mix-blend-mode: normal;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 41px;
+        height: 50px;
+        width: 373px;
+        font-size: 24px;
+        padding: 5px 20px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+    }
+
+    &.outlined-title {
+        width: 100%;
+        border-bottom: 1px solid #000000;
+        font-size: 20px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        &::placeholder { 
+            text-align: start;
+        }
+    }
+}
