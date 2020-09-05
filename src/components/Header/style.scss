@@ -8,7 +8,7 @@ header {
     align-items: center;
 
     .home {
-        font-size: 25px;
+        font-size: 27px;
         letter-spacing: 0.3em;
     }
     
@@ -39,5 +39,11 @@ header {
             margin-right: auto;
         }
 
+        .user {
+            color: #1976D2;
+            font-size: 38px;
+            padding-bottom: 15px;
+            cursor: pointer;
+        }
     }
 }

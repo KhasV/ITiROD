@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import './style.scss';
 import { Link } from 'react-router-dom';
 import { firebaseService } from '../../services';
+import { UserContext } from '../../contexts/UserContext';
 
 export const Header = ({ title }) => {
 
@@ -17,6 +18,7 @@ export const Header = ({ title }) => {
         </> :
             <div className="header-logged">
                 <div className="home"><Link to="/">Home</Link></div>
+                <section className="user" onClick={onLogout}>Logout ({user.displayName})</section>
                 <ul className="tasks links">
                     <li><Link to="/tasks">All tasks</Link></li>
                     <li><Link to="/tasks?period=year">Year</Link></li>
