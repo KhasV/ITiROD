@@ -4,6 +4,7 @@ import { SignIn } from './pages/SignIn/SignIn';
 import { Register } from './pages/Register/Register';
 import { Switch, BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { firebaseService } from './services/index';
+import { Loader } from './components/Loader/Loader';
 import { Home } from './pages/Home/Home';
 
 

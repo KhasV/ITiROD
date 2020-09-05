@@ -96,6 +96,14 @@ class FirebaseService {
             .update(event);
     }
 
+    async removeEvent(id) {
+        return window.firebase
+            .database()
+            .ref('/events/' + this.user.uid)
+            .child(id)
+            .remove();
+    }
+
     async addTask(title, description, date) {
         return window.firebase
             .database()
@@ -129,10 +137,6 @@ class FirebaseService {
         });
     }
 
-    async removeTask(id) {
-        return window.firebase.database().ref(`/tasks/${this.user.uid}/${id}`).remove();
-    }
-
     async updateTask(id, task) {
         delete task.id;
         delete task.type;
@@ -141,6 +145,10 @@ class FirebaseService {
             .ref('/tasks/' + this.user.uid)
             .child(id)
             .update(task);
+    }
+
+    async removeTask(id) {
+        return window.firebase.database().ref(`/tasks/${this.user.uid}/${id}`).remove();
     }
 
     async addReminder(title, time, date) {
@@ -186,18 +194,6 @@ class FirebaseService {
             .update(reminder);
     }
 
-    get user() {
-        return window.firebase.auth().currentUser;
-    }
-
-    async removeEvent(id) {
-        return window.firebase
-            .database()
-            .ref('/events/' + this.user.uid)
-            .child(id)
-            .remove();
-    }
-
     async removeReminder(id) {
         console.log('remove');
         return window.firebase
@@ -205,6 +201,10 @@ class FirebaseService {
             .ref('/reminders/' + this.user.uid)
             .child(id)
             .remove();
+    }
+
+    get user() {
+        return window.firebase.auth().currentUser;
     }
 }
 
