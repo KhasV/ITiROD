@@ -34,10 +34,12 @@ export const EditDialog = ({ task, isOpen, onClose }) => {
 
     const titleInput = <Input variant="outlined-title" placeholder="Name" value={title} onChange={(e) => setTitle(e.target.value)} />;
 
-    return <ModalWindow isOpen={isOpen} title={titleInput} onClose={onClose} onSubmit={onSubmit}>
+    return (
+    <ModalWindow isOpen={isOpen} title={titleInput} onClose={onClose} onSubmit={onSubmit}>
         {task.type === "task" && <>
             <Input value={date} type="date" onChange={(e) => setDate(e.target.value)} />
             <textarea value={description} rows="7" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
         </>}
     </ModalWindow>
+    );
 };

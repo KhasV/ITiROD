@@ -62,6 +62,12 @@ export const Tasks = () => {
         setTasks(tasks.filter(task => task.id !== id));
     };
 
+    const onCheckboxClick = (id) => () => {
+        firebaseService.updateTask(id, { completed: !tasks.find(task => task.id === id).completed });
+    }
+
+    const notCompletedTasks = tasks && tasks.filter(task => !task.completed);
+
     return (
         <>
             <Header />
@@ -69,19 +75,19 @@ export const Tasks = () => {
                 <CreateDialog onClose={toggleCreateTask} isOpen={isCreateTaskOpen} />
                 {currentTask && <EditDialog onClose={toggleEditTask} isOpen={isEditTaskOpen} task={currentTask} />}
                 <section className="tasks">
-                <Button color="blue" borderless fullwidth onClick={toggleCreateTask}>New task</Button>
-                    {Object.entries(groupByDate(tasks)).map(([date, groupedTasks], index) => {
+                    <Button color="blue" borderless fullwidth onClick={toggleCreateTask}>New task</Button>
+                    {notCompletedTasks && Object.entries(groupByDate(notCompletedTasks)).map(([date, groupedTasks], index) => {
                         const mappedTasks = groupedTasks.map((task, i) => 
                         <Task
                             editTask={editTask}
                             key={task.id}
+                            onCheckboxClick={onCheckboxClick}
                             removeTask={removeTask}
                             {...task}
                         />);
                         return  <Separator key={index} title={date}>{mappedTasks}</Separator>
                     }
                     )}
-
                 </section>
             </Container>
         </>

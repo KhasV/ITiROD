@@ -47,13 +47,15 @@
             margin-left: auto;
             padding: 0 15px;
 
-            .edit {
+            .edit, .delete {
                 padding: 0 8px;
+            }
+
+            .edit {
                 color: #4DB6AC;
             }
 
             .delete {
-                padding: 0 8px;
                 color: #E57373;
             }
         }
