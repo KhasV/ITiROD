@@ -5,6 +5,7 @@ export const Task = ({ id, title, removeTask }) => {
         <div className="task">
             <div className="title">{title}</div>
             <div className="controls">
+                <span className="edit" onClick={editTask(id)}>Edit</span>
                 <span className="delete" onClick={removeTask(id)}>Delete</span>
             </div>
         </div>

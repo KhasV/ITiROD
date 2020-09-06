@@ -9,13 +9,17 @@ import { Task } from './Task';
 import { Separator } from './Separator';
 import { CreateDialog } from '../../components/Modal/CreateDialog';
 import { Button } from '../../components/Forms/Button/Button';
+import { EditDialog } from '../../components/Modal/EditDialog';
 
 export const Tasks = () => {
     const period = new URLSearchParams(useLocation().search).get('period');
     const [isCreateTaskOpen, setIsCreateTaskOpen] = useState(false);
     const [tasks, setTasks] = useState(null);
+    const [isEditTaskOpen, setIsEditTaskOpen] = useState(false);
+    const [currentTask, setCurrentTask] = useState(null);
 
     const toggleCreateTask = useCallback(() => setIsCreateTaskOpen(isCreateTaskOpen => !isCreateTaskOpen), []);
+    const toggleEditTask = useCallback(() => setIsEditTaskOpen(isEditTaskOpen => !isEditTaskOpen), []); 
  
     useEffect(() => {
         const date = new Date();
@@ -43,6 +47,16 @@ export const Tasks = () => {
         return () => unsubscribe();
     }, [period]);
 
+    useEffect(() => {
+        if (currentTask) {
+            toggleEditTask();
+        }
+    }, [currentTask, toggleEditTask]);
+
+    const editTask = (id) => () => {
+        setCurrentTask({ ...tasks.find(task => task.id === id), type: 'task' });
+    }
+
     const removeTask = (id) => () => {
         firebaseService.removeTask(id);
         setTasks(tasks.filter(task => task.id !== id));
@@ -53,11 +67,13 @@ export const Tasks = () => {
             <Header />
             <Container flex>
                 <CreateDialog onClose={toggleCreateTask} isOpen={isCreateTaskOpen} />
+                {currentTask && <EditDialog onClose={toggleEditTask} isOpen={isEditTaskOpen} task={currentTask} />}
                 <section className="tasks">
                 <Button color="blue" borderless fullwidth onClick={toggleCreateTask}>New task</Button>
                     {Object.entries(groupByDate(tasks)).map(([date, groupedTasks], index) => {
                         const mappedTasks = groupedTasks.map((task, i) => 
                         <Task
+                            editTask={editTask}
                             key={task.id}
                             removeTask={removeTask}
                             {...task}
