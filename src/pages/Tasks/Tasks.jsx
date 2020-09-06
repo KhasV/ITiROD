@@ -43,6 +43,11 @@ export const Tasks = () => {
         return () => unsubscribe();
     }, [period]);
 
+    const removeTask = (id) => () => {
+        firebaseService.removeTask(id);
+        setTasks(tasks.filter(task => task.id !== id));
+    };
+
     return (
         <>
             <Header />
@@ -54,12 +59,13 @@ export const Tasks = () => {
                         const mappedTasks = groupedTasks.map((task, i) => 
                         <Task
                             key={task.id}
+                            removeTask={removeTask}
                             {...task}
                         />);
                         return  <Separator key={index} title={date}>{mappedTasks}</Separator>
                     }
                     )}
-                    
+
                 </section>
             </Container>
         </>

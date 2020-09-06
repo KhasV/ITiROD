@@ -42,5 +42,15 @@
             padding: 0 30px;
             text-transform: uppercase;
         }
+
+        .controls {
+            margin-left: auto;
+            padding: 0 15px;
+
+            .delete {
+                padding: 0 8px;
+                color: #E57373;
+            }
+        }
     }
 }
