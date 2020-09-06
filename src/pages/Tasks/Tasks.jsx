@@ -68,6 +68,8 @@ export const Tasks = () => {
 
     const notCompletedTasks = tasks && tasks.filter(task => !task.completed);
 
+    const completedTasks = tasks && tasks.filter(task => task.completed);
+
     return (
         <>
             <Header />
@@ -88,6 +90,15 @@ export const Tasks = () => {
                         return  <Separator key={index} title={date}>{mappedTasks}</Separator>
                     }
                     )}
+                    <Separator title="Completed">
+                        {completedTasks && completedTasks.map(task => <Task
+                                editTask={editTask}
+                                key={task.id}
+                                removeTask={removeTask}
+                                onCheckboxClick={onCheckboxClick}
+                                {...task}
+                            />)}
+                    </Separator>
                 </section>
             </Container>
         </>

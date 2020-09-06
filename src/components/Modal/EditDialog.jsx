@@ -40,6 +40,5 @@ export const EditDialog = ({ task, isOpen, onClose }) => {
             <Input value={date} type="date" onChange={(e) => setDate(e.target.value)} />
             <textarea value={description} rows="7" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
         </>}
-    </ModalWindow>
-    );
+    </ModalWindow>);
 };

@@ -11,6 +11,5 @@ export const Checkbox = ({ onClick, isChecked }) => {
             onClick();
         }
     };
-
     return <div className={cx({ "checkbox": true, checked })} onClick={onBoxClick} />;
 };
