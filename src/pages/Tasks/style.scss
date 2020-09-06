@@ -1,0 +1,42 @@
+.tasks {
+    width: 55%;
+
+    .title {
+        font-size: 24px;
+        line-height: 14px;
+        text-transform: uppercase;
+        padding: 25px 0px 15px 0px;
+    }
+    
+    @media screen and (max-width: 1280px) {
+        width: 100%;
+    }
+
+    hr {
+        height: 2px;
+        background: #000000;
+        border: none;
+    }
+    
+    .list {
+        hr {
+            height: 2px;
+            background: #C4C4C4;
+            margin-bottom: 15px;
+        }
+    }
+
+    .task {
+        display: flex;
+        align-items: center;
+
+        font-size: 24px;
+        padding: 15px 0px;
+        line-height: 30px;
+
+        .title {
+            padding: 0 30px;
+            text-transform: uppercase;
+        }
+    }
+}

@@ -5,7 +5,9 @@ import { Register } from './pages/Register/Register';
 import { Switch, BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { firebaseService } from './services/index';
 import { Loader } from './components/Loader/Loader';
+import { UserContext } from './contexts/UserContext';
 import { Home } from './pages/Home/Home';
+import { Tasks } from './pages/Tasks/Tasks';
 
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
               <Route path="/login" component={SignIn} />
               <Route path="/register" component={Register} />
               {!user ? <Redirect to="/login" /> : <Route exact path="/" component={Home} />}
+              {!user ? <Redirect to="/login" /> : <Route path="/tasks" component={Tasks} />}
             </Switch>
           </Router>
         </UserContext.Provider>
