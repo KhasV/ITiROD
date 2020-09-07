@@ -70,6 +70,8 @@ export const Tasks = () => {
 
     const completedTasks = tasks && tasks.filter(task => task.completed);
 
+    const todayTasks = tasks && tasks.filter(task => task.date === convertToIsoDate(new Date()));
+
     return (
         <>
             <Header />
@@ -78,6 +80,15 @@ export const Tasks = () => {
                 {currentTask && <EditDialog onClose={toggleEditTask} isOpen={isEditTaskOpen} task={currentTask} />}
                 <section className="tasks">
                     <Button color="blue" borderless fullwidth onClick={toggleCreateTask}>New task</Button>
+                    <Separator title="Today's tasks">
+                        {todayTasks && todayTasks.map(task => <Task
+                            editTask={editTask}
+                            key={task.id}
+                            onCheckboxClick={onCheckboxClick}
+                            removeTask={removeTask}
+                            {...task}
+                        />)}
+                    </Separator>
                     {notCompletedTasks && Object.entries(groupByDate(notCompletedTasks)).map(([date, groupedTasks], index) => {
                         const mappedTasks = groupedTasks.map((task, i) => 
                         <Task
