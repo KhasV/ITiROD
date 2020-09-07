@@ -9,13 +9,16 @@ export const CreateDialog = ({ isOpen, onClose }) => {
     const [date, setDate] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState();
-
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
 
     const resetFields = () => {
         setActive('task');
         setDate('');
         setTitle('');
         setDescription('');
+        setStartTime('');
+        setEndTime('');
     }
 
     const onSubmit = () => {
@@ -23,6 +26,9 @@ export const CreateDialog = ({ isOpen, onClose }) => {
             case 'task': 
                 firebaseService.addTask(title, description, date);
                 break;
+            case 'event': 
+                firebaseService.addEvent(title, description, date, `${startTime}-${endTime}`);
+                break; 
             default: break;
         }
         onClose();
@@ -39,8 +45,22 @@ export const CreateDialog = ({ isOpen, onClose }) => {
                         <Input value={date} type="date" onChange={(e) => setDate(e.target.value)} />
                         <textarea value={description} rows="7" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
                     </>}
+                    {active === "event" && <>
+                        <div className="period">
+                            <Input value={startTime} placeholder="Start time" onChange={(e) => setStartTime(e.target.value)} />
+                            <Input value={endTime} placeholder="End time" onChange={(e) => setEndTime(e.target.value)} />
+                            <Input value={date} type="date" onChange={(e) => setDate(e.target.value)} />
+                            <textarea value={description} rows="5" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+                        </div>
+                    </>}
                 </div>
                 <section className="types">
+                    <Button
+                        circled
+                        color={active === "event" ? "light-yellow" : "light-aqua"}
+                        onClick={() => setActive("event")}>
+                        Event
+                    </Button>
                     <Button
                         circled
                         color={active === "task" ? "light-green" : "light-aqua"}

@@ -81,7 +81,8 @@ export const Tasks = () => {
                 <section className="tasks">
                     <Button color="blue" borderless fullwidth onClick={toggleCreateTask}>New task</Button>
                     <Separator title="Today's tasks">
-                        {todayTasks && todayTasks.map(task => <Task
+                        {todayTasks && todayTasks.map(task => 
+                        <Task
                             editTask={editTask}
                             key={task.id}
                             onCheckboxClick={onCheckboxClick}
@@ -102,7 +103,8 @@ export const Tasks = () => {
                     }
                     )}
                     <Separator title="Completed">
-                        {completedTasks && completedTasks.map(task => <Task
+                        {completedTasks && completedTasks.map(task => 
+                            <Task
                                 editTask={editTask}
                                 key={task.id}
                                 removeTask={removeTask}
