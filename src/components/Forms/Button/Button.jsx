@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss';
 import cx from 'classnames';
 
-export const Button = ({ type = 'text', placeholder, children, rounded, onClick,
+export const Button = ({ type = 'text', children, rounded, onClick,
     circled, color = 'aqua', borderless, fullwidth }) => {
     return (
         <button

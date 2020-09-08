@@ -29,6 +29,9 @@ export const CreateDialog = ({ isOpen, onClose }) => {
             case 'event': 
                 firebaseService.addEvent(title, description, date, `${startTime}-${endTime}`);
                 break; 
+            case 'reminder':
+                firebaseService.addReminder(title, startTime, date);
+                break;
             default: break;
         }
         onClose();
@@ -53,6 +56,10 @@ export const CreateDialog = ({ isOpen, onClose }) => {
                             <textarea value={description} rows="5" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
                         </div>
                     </>}
+                    {active === "reminder" && <>
+                        <Input value={date} type="date" onChange={(e) => setDate(e.target.value)} />
+                        <Input value={startTime} placeholder="Start time" onChange={(e) => setStartTime(e.target.value)} />
+                    </>}
                 </div>
                 <section className="types">
                     <Button
@@ -66,6 +73,12 @@ export const CreateDialog = ({ isOpen, onClose }) => {
                         color={active === "task" ? "light-green" : "light-aqua"}
                         onClick={() => setActive("task")}>
                         Task
+                    </Button>
+                    <Button
+                        circled
+                        color={active === "reminder" ? "light-red" : "light-aqua"}
+                        onClick={() => setActive("reminder")}>
+                        Reminder
                     </Button>
                 </section>
             </div>
