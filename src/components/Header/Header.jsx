@@ -5,7 +5,8 @@ import { firebaseService } from '../../services';
 import { UserContext } from '../../contexts/UserContext';
 
 export const Header = ({ title }) => {
-
+    
+    const { user } = useContext(UserContext);
     const onLogout = () => firebaseService.logout();
 
     return <header>

@@ -8,7 +8,7 @@ import { Loader } from './components/Loader/Loader';
 import { UserContext } from './contexts/UserContext';
 import { Home } from './pages/Home/Home';
 import { Tasks } from './pages/Tasks/Tasks';
-
+import { Day } from './pages/Day/Day';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -34,6 +34,7 @@ function App() {
               <Route path="/register" component={Register} />
               {!user ? <Redirect to="/login" /> : <Route exact path="/" component={Home} />}
               {!user ? <Redirect to="/login" /> : <Route path="/tasks" component={Tasks} />}
+              {!user ? <Redirect to="/login" /> : <Route path="/date/:year/:month/:day" component={Day} />}
             </Switch>
           </Router>
         </UserContext.Provider>
