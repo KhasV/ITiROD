@@ -106,6 +106,7 @@ export const Timeline = ({ date }) => {
                         />
                 ))}
             </div>
+            
             {timestamps}
         </div>
     </>;
