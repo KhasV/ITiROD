@@ -4,6 +4,7 @@ import { MONTH_NAMES } from '../../constansts';
 import { Button } from '../../components/Forms/Button/Button';
 import { Header } from '../../components/Header/Header';
 import { Container } from '../../components/Container/Container';
+import { Timeline } from '../../components/Timeline/Timeline';
 
 export const Day = () => {
     const { year, month, day } = useParams();
@@ -43,6 +44,7 @@ export const Day = () => {
                         <Button onClick={onRightArrowClick} rounded>{'>'}</Button>
                     </section>
                 </header>
+                <Timeline />
             </Container>
         </>
     );

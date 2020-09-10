@@ -1,0 +1,16 @@
+.timeline {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 1024px;
+
+    .time {
+        margin-bottom: 30px;
+        font-size: 20px;
+    }
+
+    hr {
+        margin: 0px 0px 6px 0px;
+    }
+
+}
