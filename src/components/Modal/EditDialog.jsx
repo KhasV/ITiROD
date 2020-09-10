@@ -7,6 +7,8 @@ export const EditDialog = ({ task, isOpen, onClose }) => {
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
     const [title, setTitle] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [title, setTitle] = useState('');
 
 
     const onSubmit = () => {
@@ -18,6 +20,11 @@ export const EditDialog = ({ task, isOpen, onClose }) => {
                 task.description = description;
                 firebaseService.updateTask(task.id, task);
                 break;
+            case 'event':
+                task.interval = `${startTime}-${endTime}`;
+                task.description = description;
+                firebaseService.updateEvent(task.id, task);
+                break;
             default: 
                 break;
         }
@@ -28,6 +35,14 @@ export const EditDialog = ({ task, isOpen, onClose }) => {
         if (task) {
             setTitle(task.title);
             setDescription(task.description);
+            if (task.interval) {
+                const [startTime, endTime] = task.interval.split('-');
+                setStartTime(startTime);
+                setEndTime(endTime);
+            }
+            if (task.time) {
+                setStartTime(task.time);
+            }
             setDate(task.date);
         }
     }, [task]);
@@ -39,6 +54,14 @@ export const EditDialog = ({ task, isOpen, onClose }) => {
         {task.type === "task" && <>
             <Input value={date} type="date" onChange={(e) => setDate(e.target.value)} />
             <textarea value={description} rows="7" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+        </>}
+        {task.type === "event" && <>
+            <div className="period">
+                <Input value={startTime} placeholder="Start time" onChange={(e) => setStartTime(e.target.value)} />
+                <Input value={endTime} placeholder="End time" onChange={(e) => setEndTime(e.target.value)} />
+                <Input value={date} type="date" onChange={(e) => setDate(e.target.value)} />
+                <textarea value={description} rows="5" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+            </div>
         </>}
     </ModalWindow>);
 };

@@ -28,6 +28,11 @@ html, body, #root {
     flex-direction: column;
 }
 
+#modal-root {
+    display: flex;
+    justify-content: center;
+}
+
 ul {
     list-style: none;
     padding: 0;

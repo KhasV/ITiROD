@@ -13,6 +13,27 @@
         margin: 0px 0px 6px 0px;
     }
 
+    .notefield {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .event {
+        position: absolute;
+        background: #ffff22;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 8px;
+        box-sizing: border-box;
+        border: 1px solid #000000;
+
+        .title {
+            padding-bottom: 10px;
+        }
+    }
 }
 
 .taskstable {
