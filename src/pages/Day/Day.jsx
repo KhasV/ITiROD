@@ -5,6 +5,7 @@ import { Button } from '../../components/Forms/Button/Button';
 import { Header } from '../../components/Header/Header';
 import { Container } from '../../components/Container/Container';
 import { Timeline } from '../../components/Timeline/Timeline';
+import { convertToIsoDate } from '../../utils/date';
 
 export const Day = () => {
     const { year, month, day } = useParams();
@@ -30,6 +31,9 @@ export const Day = () => {
         replaceDate(now);
     }, [replaceDate]);
 
+    const timelineDate = new Date(date);
+    timelineDate.setDate(timelineDate.getDate() + 1);
+
     return (
         <>
             <Header />
@@ -44,7 +48,7 @@ export const Day = () => {
                         <Button onClick={onRightArrowClick} rounded>{'>'}</Button>
                     </section>
                 </header>
-                <Timeline />
+                <Timeline date={convertToIsoDate(timelineDate)} />
             </Container>
         </>
     );

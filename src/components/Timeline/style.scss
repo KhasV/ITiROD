@@ -14,3 +14,16 @@
     }
 
 }
+
+.taskstable {
+    display: flex;
+    letter-spacing: 2px;
+
+    .task {
+        padding: 15px 50px 15px 15px;
+        border-radius: 15px;
+        font-size: 14px;
+        text-transform: uppercase;
+        margin: 10px 5px;
+    }
+}
