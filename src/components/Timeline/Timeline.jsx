@@ -43,6 +43,16 @@ export const Timeline = ({ date }) => {
         setCurrentNote({ ...note, type });
     }
 
+    const onEventRemove = (id) => (e) => {  
+        e.stopPropagation();
+        firebaseService.removeEvent(id);
+    };
+
+    const onReminderRemove = (id) => (e) => {
+        e.stopPropagation();
+        firebaseService.removeReminder(id);
+    }
+
     useEffect(() => {
         if (currentNote) {
             toggleEdit();
@@ -112,6 +122,7 @@ export const Timeline = ({ date }) => {
                             position={positions[i]}
                             setNextPosition={setNextPosition}
                             onClick={toggleWithSetNote}
+                            onRemove={onEventRemove}
                             key={event.id}
                         />
                 ))}
@@ -123,6 +134,7 @@ export const Timeline = ({ date }) => {
                             position={positions[events.length + i]}
                             barHeight={barHeight}
                             onClick={toggleWithSetNote}
+                            onRemove={onReminderRemove}
                         />
                 )}
             </div>

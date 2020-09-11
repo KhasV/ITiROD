@@ -48,6 +48,15 @@
             padding: 0px 6px;
         }
     }
+
+    .reminder, .event {
+        .remove-btn {
+            position: absolute;
+            top: -1px;
+            right: 5px;
+            cursor: pointer;
+        }
+    }
 }
 
 .taskstable {
