@@ -23,6 +23,34 @@
     &.active {
         background: #90CAF9;
     }
+
+    &.event-reminder {
+        background: linear-gradient(180deg, #FFECB3 0%, rgba(255, 255, 255, 0) 100%), #FFCCBC;
+    }
+
+    &.event-task {
+        background: linear-gradient(180deg, #C8E6C9 0%, rgba(255, 255, 255, 0) 100%), #FFECB3;
+    }
+
+    &.task-reminder {
+        background: linear-gradient(180deg, #C8E6C9 0%, rgba(255, 255, 255, 0) 100%), #FFCCBC;
+    }
+
+    &.event-task-reminder {
+        background: linear-gradient(180deg, #FFECB3 0%, rgba(255, 255, 255, 0) 50%), linear-gradient(180deg, #FFCCBC 50%, rgba(255, 255, 255, 0) 100%), #C8E6C9;
+    }
+
+    &.task {
+        background: #C8E6C9;
+    }
+
+    &.reminder {
+        background: #FFCCBC;
+    }
+
+    &.event {
+        background: #FFECB3;
+    }
 }
 
 .week-title {
