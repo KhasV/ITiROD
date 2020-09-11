@@ -10,7 +10,6 @@ export const EditDialog = ({ task, isOpen, onClose }) => {
     const [endTime, setEndTime] = useState('');
     const [title, setTitle] = useState('');
 
-
     const onSubmit = () => {
         task.title = title;
         task.date = date;
@@ -24,6 +23,9 @@ export const EditDialog = ({ task, isOpen, onClose }) => {
                 task.interval = `${startTime}-${endTime}`;
                 task.description = description;
                 firebaseService.updateEvent(task.id, task);
+                break;
+            case 'reminder':
+                firebaseService.updateReminder(task.id, task);
                 break;
             default: 
                 break;
@@ -62,6 +64,10 @@ export const EditDialog = ({ task, isOpen, onClose }) => {
                 <Input value={date} type="date" onChange={(e) => setDate(e.target.value)} />
                 <textarea value={description} rows="5" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
             </div>
+        </>}
+        {task.type === "reminder" && <>
+            <Input value={date} type="date" onChange={(e) => setDate(e.target.value)} />
+            <Input value={startTime} placeholder="Start time" onChange={(e) => setStartTime(e.target.value)} />
         </>}
     </ModalWindow>);
 };

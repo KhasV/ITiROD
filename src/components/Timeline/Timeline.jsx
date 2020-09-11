@@ -5,7 +5,8 @@ import { DAY_HOURS } from '../../constansts';
 import { firebaseService } from '../../services';
 import { Task } from './Task';
 import { EditDialog } from '../Modal/EditDialog'; 
-import { Event } from './Event';      
+import { Event } from './Event';  
+import { Reminder } from './Reminder';    
 
 export const Timeline = ({ date }) => {
     const fieldRef = useRef();
@@ -17,6 +18,7 @@ export const Timeline = ({ date }) => {
 
     const [tasks, setTasks] = useState([]);
     const [events, setEvents] = useState([]);
+    const [reminders, setReminders] = useState([]);
 
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [currentNote, setCurrentNote] = useState();
@@ -31,6 +33,9 @@ export const Timeline = ({ date }) => {
                 break;
             case 'event':
                 note = events.find(event => event.id === id);
+                break;
+            case 'reminder':
+                note = reminders.find(reminder => reminder.id === id);
                 break;
             default:
                 break;
@@ -61,9 +66,14 @@ export const Timeline = ({ date }) => {
             setEvents(events);
         }, [date]);
 
+        const unsubscribeReminders = firebaseService.listenReminders((reminders) => {
+            setReminders(reminders);
+        }, [date]);
+
         return () => {
             unsubscribeTasks();
             unsubscribeEvents();
+            unsubscribeReminders();
         }
     }, [date]);
 
@@ -105,8 +115,17 @@ export const Timeline = ({ date }) => {
                             key={event.id}
                         />
                 ))}
+                {reminders.map(reminder =>
+                    ({ ...reminder, time: convertInMinutes(reminder.time) })).map((reminder, i) =>
+                        <Reminder key={reminder.id}
+                            reminder={reminder}
+                            setNextPosition={setNextPosition}
+                            position={positions[events.length + i]}
+                            barHeight={barHeight}
+                            onClick={toggleWithSetNote}
+                        />
+                )}
             </div>
-            
             {timestamps}
         </div>
     </>;

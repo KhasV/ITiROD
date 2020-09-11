@@ -34,6 +34,20 @@
             padding-bottom: 10px;
         }
     }
+
+    .reminder {
+        position: absolute;
+        background: #ffff22;
+        border-radius: 15px;
+        padding: 8px 20px;
+        display: flex;
+        align-items: center;
+        
+
+        .title {
+            padding: 0px 6px;
+        }
+    }
 }
 
 .taskstable {
