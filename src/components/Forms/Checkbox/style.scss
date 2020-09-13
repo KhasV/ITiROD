@@ -1,0 +1,20 @@
+.checkbox {
+    width: 22px;
+    height: 22px;
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+
+    &.checked {
+        &::after {
+            position: absolute;
+            width: inherit;
+            height: inherit;
+            line-height: 22px;
+            padding-left: 2px;
+            content: 'X';
+        }
+    }
+}

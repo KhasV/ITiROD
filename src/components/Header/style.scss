@@ -1,0 +1,49 @@
+header {
+    background-color: #FFFFFF;
+    border-radius: 41px;
+    padding: 20px 30px;
+    margin: 35px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .home {
+        font-size: 27px;
+        letter-spacing: 0.3em;
+    }
+    
+    h1 {
+        font-size: 70px;
+        font-style: normal;
+        font-weight: normal;
+        margin: 0;
+    }
+
+    .links {
+        text-transform: uppercase;
+        font-size: 36px;
+    
+        li {
+            padding: 0 20px;
+        }
+    }
+
+    .header-logged {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;    
+        flex-direction: column;
+
+        .links {
+            margin-right: auto;
+        }
+
+        .user {
+            color: #1976D2;
+            font-size: 38px;
+            padding-bottom: 15px;
+            cursor: pointer;
+        }
+    }
+}
